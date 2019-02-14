@@ -1,0 +1,13 @@
+version: '2'
+services:
+  web:
+    build: .
+    image: web.app
+  lb:
+    image: dockercloud/haproxy
+    links:
+     - web
+    ports:
+     - '8081:80'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
